@@ -6,7 +6,7 @@ var fs = require('fs');
 // keys for twitter and spotify api
 var keys = require("./keys.js");
 var Twitter = require('twitter');
-var client = new Twitter(keys.twitterKeys);
+var client = new Twitter(keys.twitter);
 var command = process.argv[2];
 var input = JSON.stringify(process.argv[3]); 
 
@@ -40,7 +40,7 @@ switch (command) {
 function getTweets(){
 
 		//Display last 20 Tweets
-		var screenName = {screen_name: 'Alexandr_Bakilin'};
+		var screenName = 'Alexandr_Bakilin';
 		client.get('statuses/user_timeline', screenName, function(error, tweets, response){
 			console.log(error);
 			
@@ -51,7 +51,7 @@ function getTweets(){
 			  console.log("-----------------------");
 			  
 			  //adds text to log.txt file
-			  fs.appendFile('log.txt', "@@AlexandrBakilin: " + tweets[i].text + " Created At: " + date.substring(0, 19));
+			  fs.appendFile('log.txt', "@AlexandrBakilin: " + tweets[i].text + " Created At: " + date.substring(0, 19));
 			  fs.appendFile('log.txt', "-----------------------");
 			}
 		  }else{
